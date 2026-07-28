@@ -17,13 +17,14 @@ public class NotificationUI : MonoBehaviour
   public Sprite errorIcon;
   public Sprite warningIcon;
   public Sprite informationIcon;
-  public Sprite loadingIcon;
+  public GameObject loadingIcon;
   public Sprite progressIcon;
 
   public void Setup(NotificationData data)
   {
     progressBar.gameObject.SetActive(false);
     icon.gameObject.SetActive(true);
+    loadingIcon.gameObject.SetActive(false);
     titleText.text = data.title;
     messageText.text = data.message;
 
@@ -48,7 +49,8 @@ public class NotificationUI : MonoBehaviour
         break;
 
       case NotificationType.Loading:
-        icon.sprite = loadingIcon;
+        icon.gameObject.SetActive(false);
+        loadingIcon.SetActive(true);
         break;
 
       case NotificationType.Progress:
