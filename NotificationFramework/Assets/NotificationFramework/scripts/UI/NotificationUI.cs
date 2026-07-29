@@ -7,6 +7,8 @@ public class NotificationUI : MonoBehaviour
 {
 
   public Image icon;
+  public GameObject NotificationPanel;
+  public NotificationSettings settings;
 
   public TMP_Text titleText;
   public TMP_Text messageText;
@@ -60,4 +62,13 @@ public class NotificationUI : MonoBehaviour
         break;
     }
   }
+  public void CloseNotification()
+  {
+    NotificationManager.Instance.HideNotification();
+  }
+  public void UpdateProgress(float value)
+  {
+    progressBar.value = value;
+  }
+
 }
