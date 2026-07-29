@@ -16,13 +16,14 @@ MonoBehaviour:
   errorColor: {r: 1, g: 0, b: 0, a: 1}
   warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   infoColor: {r: 0, g: 0, b: 1, a: 1}
+  loadingColor: {r: 0, g: 1, b: 1, a: 1}
+  progressColor: {r: 1, g: 0, b: 1, a: 1}
   SuccessIcon: {fileID: 21300000, guid: 4f593198ac1ad324b8f5fb2f54922f62, type: 3}
-  ErrorIcon: {fileID: 21300000, guid: 86b8f615840885d4f8d5ed26f27ff1c8, type: 3}
+  ErrorIcon: {fileID: 21300000, guid: 25d6baae392b4f24a878d5defbb9affa, type: 3}
   WarningIcon: {fileID: 21300000, guid: 17a74dfdeadb7e94d9287d8b26d979be, type: 3}
   InformationIcon: {fileID: 21300000, guid: 61c0274e9b7ebd9428e620afb548e001, type: 3}
-  LoadingSpinnerprefab: {fileID: 6996123504536683189, guid: 55833f438309d6648bd57b18b7d0ac83,
-    type: 3}
-  ProgresIcon: {fileID: 21300000, guid: bcfac8c149ea57849a7475b50546db19, type: 3}
-  font: {fileID: 0}
+  ProgressIcon: {fileID: 21300000, guid: bcfac8c149ea57849a7475b50546db19, type: 3}
+  titlefont: {fileID: 11400000, guid: 6ecc6dc7de248b64eb2bc7dd4137ec27, type: 2}
+  messagefont: {fileID: 11400000, guid: 336a5bda168644b43b106438841353c2, type: 2}
   defaultDuration: 3
   animationStyle: 0
