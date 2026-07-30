@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class NotificationManager : MonoBehaviour
 {
   public static NotificationManager Instance;
@@ -14,8 +13,7 @@ public class NotificationManager : MonoBehaviour
   public Transform bottomLeft;
   public Transform bottomCenter;
   public Transform bottomRight;
-
-  private Coroutine hideCoroutine;
+  private List<NotificationData> notificationHistory = new List<NotificationData>();
   private Queue<NotificationData> notificationQueue = new Queue<NotificationData>();
   private int maxQueueSize = 5;
   private bool isShowing = false;
@@ -35,11 +33,10 @@ public class NotificationManager : MonoBehaviour
       return;
     }
     notificationQueue.Enqueue(data);
-    if (isShowing)
+    if (!isShowing)
     {
-      return;
+      ShowNextNotification();
     }
-    ShowNextNotification();
   }
   void ShowNextNotification()
   {
@@ -55,6 +52,7 @@ public class NotificationManager : MonoBehaviour
     SetNotificationPosition(data.position);
     notificationPanel.SetActive(true);
     notificationUI.Setup(data);
+    notificationUI.notificationAnimation.PlayShowAnimation();
     if (data.type == NotificationType.Loading || data.type == NotificationType.Progress)
     {
       return;
@@ -63,7 +61,7 @@ public class NotificationManager : MonoBehaviour
     {
       return;
     }
-    hideCoroutine = StartCoroutine(AutoHide(data.duration));
+    StartCoroutine(AutoHide(data.duration));
   }
 
   IEnumerator AutoHide(float seconds)
@@ -73,6 +71,12 @@ public class NotificationManager : MonoBehaviour
   }
   public void HideNotification()
   {
+    notificationUI.notificationAnimation.PlayHideAnimation();
+    StartCoroutine(HideAfterAnimation());
+  }
+  IEnumerator HideAfterAnimation()
+  {
+    yield return new WaitForSeconds(0.5f);
     notificationPanel.SetActive(false);
     isShowing = false;
     ShowNextNotification();
@@ -116,3 +120,4 @@ public class NotificationManager : MonoBehaviour
     }
   }
 }
+

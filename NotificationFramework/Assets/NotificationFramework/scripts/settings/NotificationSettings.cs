@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using Microsoft.Unity.VisualStudio.Editor;
-
 public enum AnimationStyle
 {
   Fade,
@@ -25,14 +24,12 @@ public class NotificationSettings : ScriptableObject
   public Sprite InformationIcon;
   public Sprite ProgressIcon;
 
-
-  [Header("UI Settings")]
-
+  //fonts...
   public TMP_FontAsset titlefont;
   public TMP_FontAsset messagefont;
   public float defaultDuration = 3f;
 
-
-  [Header("Animation")]
+  //animations..
   public AnimationStyle animationStyle;
 }
+

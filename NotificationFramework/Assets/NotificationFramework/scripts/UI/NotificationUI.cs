@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,8 +15,7 @@ public class NotificationUI : MonoBehaviour
 
   public Button closeButton;
   public GameObject LoadingIcon;
-  public CanvasGroup canvasGroup;
-
+  public NotificationAnimation notificationAnimation;
 
   public void Setup(NotificationData data)
   {
@@ -86,5 +84,4 @@ public class NotificationUI : MonoBehaviour
   {
     titleText.color = color;
   }
-
 }

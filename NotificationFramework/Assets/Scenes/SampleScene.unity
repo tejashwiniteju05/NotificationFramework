@@ -2558,7 +2558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -344}
+  m_AnchoredPosition: {x: 0, y: -367.56}
   m_SizeDelta: {x: 575.67, y: 356.225}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1138854968
@@ -3550,6 +3550,7 @@ GameObject:
   - component: {fileID: 1680568355}
   - component: {fileID: 1680568357}
   - component: {fileID: 1680568358}
+  - component: {fileID: 1680568359}
   m_Layer: 5
   m_Name: NotificationPanel
   m_TagString: Untagged
@@ -3639,7 +3640,7 @@ MonoBehaviour:
   progressBar: {fileID: 1998752997}
   closeButton: {fileID: 1617135085}
   LoadingIcon: {fileID: 971651081}
-  canvasGroup: {fileID: 1680568358}
+  notificationAnimation: {fileID: 1680568359}
 --- !u!225 &1680568358
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3652,6 +3653,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1680568359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680568352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8918193ffd49f4789aeff64e7d9ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1680568358}
+  NotificationPanel: {fileID: 1680568352}
+  settings: {fileID: 11400000, guid: 9104650d2f1eefa4c9b3281bdd71a9c2, type: 2}
 --- !u!1 &1724551053
 GameObject:
   m_ObjectHideFlags: 0
