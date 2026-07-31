@@ -6,6 +6,7 @@ public class NotificationUI : MonoBehaviour
 {
 
   public Image icon;
+  public Image backgroundImage;
   public GameObject NotificationPanel;
   public NotificationSettings settings;
 
@@ -39,22 +40,26 @@ public class NotificationUI : MonoBehaviour
     {
       case NotificationType.Success:
         icon.sprite = settings.SuccessIcon;
+        data.Icon = settings.SuccessIcon;
         ApplyColor(settings.successColor);
         break;
 
       case NotificationType.Error:
         icon.sprite = settings.ErrorIcon;
+        data.Icon = settings.ErrorIcon;
         ApplyColor(settings.errorColor);
         break;
 
       case NotificationType.Warning:
         icon.sprite = settings.WarningIcon;
+        data.Icon = settings.WarningIcon;
         ApplyColor(settings.warningColor);
 
         break;
 
       case NotificationType.Information:
         icon.sprite = settings.InformationIcon;
+        data.Icon = settings.InformationIcon;
         ApplyColor(settings.infoColor);
         break;
 
@@ -82,6 +87,8 @@ public class NotificationUI : MonoBehaviour
   }
   void ApplyColor(Color color)
   {
-    titleText.color = color;
+    backgroundImage.color = color;
+    titleText.color = Color.white;
+    messageText.color = Color.white;
   }
 }

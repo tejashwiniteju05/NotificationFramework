@@ -46,24 +46,27 @@ public class NotificationManager : MonoBehaviour
       notificationPanel.SetActive(false);
       return;
     }
-
     isShowing = true;
     NotificationData data = notificationQueue.Dequeue();
     SetNotificationPosition(data.position);
     notificationPanel.SetActive(true);
     notificationUI.Setup(data);
-    notificationUI.notificationAnimation.PlayShowAnimation();
-    if (data.type == NotificationType.Loading || data.type == NotificationType.Progress)
+    if (data.type != NotificationType.Loading && data.type != NotificationType.Progress)
     {
-      return;
+      HistoryManager.Instance.AddHistory(data);
     }
+    notificationUI.notificationAnimation.PlayShowAnimation();
+
     if (data.sticky)
     {
       return;
     }
     StartCoroutine(AutoHide(data.duration));
   }
-
+  public List<NotificationData> GetHistory()
+  {
+    return notificationHistory;
+  }
   IEnumerator AutoHide(float seconds)
   {
     yield return new WaitForSeconds(seconds);

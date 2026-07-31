@@ -26,12 +26,12 @@ namespace NotificationFramework
 
     public static void ShowLoading(string message)
     {
-      Show("LOADING", message, NotificationType.Loading, NotificationPosition.BottomCenter, true, 0);
+      Show("LOADING", message, NotificationType.Loading, NotificationPosition.BottomCenter, false, 5f);
     }
 
     public static void ShowProgress()
     {
-      Show("PROGRESS", "", NotificationType.Progress, NotificationPosition.BottomRight, false, 0);
+      Show("PROGRESS", "", NotificationType.Progress, NotificationPosition.BottomRight, true, 0);
     }
 
     private static void Show(string title, string message, NotificationType type, NotificationPosition position, bool sticky, float duration)
@@ -43,6 +43,7 @@ namespace NotificationFramework
       data.position = position;
       data.sticky = sticky;
       data.duration = duration;
+      data.time = System.DateTime.Now.ToString("hh:mm tt");
 
       NotificationManager.Instance.ShowNotification(data);
     }
