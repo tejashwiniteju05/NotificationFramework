@@ -1,0 +1,18 @@
+{
+    "name": "com.notificationframework.Editor",
+    "rootNamespace": "",
+    "references": [
+        "com.notificationframework"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
