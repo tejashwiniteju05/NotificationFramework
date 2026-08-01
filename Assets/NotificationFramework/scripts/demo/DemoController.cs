@@ -70,14 +70,15 @@ public class DemoController : MonoBehaviour
 
   IEnumerator ProgressBar()
   {
-    float progress = 0;
-    while (progress <= 1)
+    for (int i = 0; i <= 10; i++)
     {
+      float progress = i / 10f;
       NotificationManager.Instance.UpdateProgress(progress);
       progress += 0.1f;
-      yield return new WaitForSeconds(1);
+      yield return new WaitForSeconds(1f);
     }
-    Notification.HideCurrent();
+    // yield return new WaitForSeconds(1f);
+    // Notification.HideCurrent();
   }
 }
 

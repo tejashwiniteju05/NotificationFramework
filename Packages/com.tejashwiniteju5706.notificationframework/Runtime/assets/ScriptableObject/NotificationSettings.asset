@@ -27,3 +27,4 @@ MonoBehaviour:
   messagefont: {fileID: 11400000, guid: 336a5bda168644b43b106438841353c2, type: 2}
   defaultDuration: 3
   animationStyle: 0
+  queueMode: 0
