@@ -5,35 +5,35 @@ namespace NotificationFramework
   {
     public static void ShowSuccess(string message)
     {
-      Show("SUCCESS", message, NotificationType.Success, NotificationPosition.TopLeft, false, 2f);
+      Show("SUCCESS", message, NotificationType.Success, NotificationPosition.TopLeft, false, 2f, NotificationPriority.Medium);
     }
 
     public static void ShowError(string message)
     {
-      Show("ERROR", message, NotificationType.Error, NotificationPosition.TopCenter, false, 3f);
+      Show("ERROR", message, NotificationType.Error, NotificationPosition.TopCenter, false, 3f, NotificationPriority.Critical);
     }
 
     public static void ShowWarning(string message)
     {
-      Show("WARNING", message, NotificationType.Warning, NotificationPosition.TopRight, false, 2f);
+      Show("WARNING", message, NotificationType.Warning, NotificationPosition.TopRight, false, 2f, NotificationPriority.High);
     }
 
     public static void ShowInformation(string message)
     {
-      Show("INFORMATION", message, NotificationType.Information, NotificationPosition.BottomLeft, true, 3f);
+      Show("INFORMATION", message, NotificationType.Information, NotificationPosition.BottomLeft, true, 3f, NotificationPriority.Low);
     }
 
     public static void ShowLoading(string message)
     {
-      Show("LOADING", message, NotificationType.Loading, NotificationPosition.BottomCenter, false, 5f);
+      Show("LOADING", message, NotificationType.Loading, NotificationPosition.BottomCenter, false, 5f, NotificationPriority.Medium);
     }
 
     public static void ShowProgress()
     {
-      Show("PROGRESS", "", NotificationType.Progress, NotificationPosition.BottomRight, true, 0);
+      Show("PROGRESS", "", NotificationType.Progress, NotificationPosition.BottomRight, true, 0f, NotificationPriority.Medium);
     }
 
-    private static void Show(string title, string message, NotificationType type, NotificationPosition position, bool sticky, float duration)
+    private static void Show(string title, string message, NotificationType type, NotificationPosition position, bool sticky, float duration, NotificationPriority priority)
     {
       NotificationData data = new NotificationData();
       data.title = title;
@@ -42,6 +42,7 @@ namespace NotificationFramework
       data.position = position;
       data.sticky = sticky;
       data.duration = duration;
+      data.priority = priority;
       data.time = System.DateTime.Now.ToString("hh:mm tt");
 
       NotificationManager.Instance.ShowNotification(data);

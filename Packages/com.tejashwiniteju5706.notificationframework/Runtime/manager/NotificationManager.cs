@@ -6,8 +6,9 @@ namespace NotificationFramework
   public class NotificationManager : MonoBehaviour
   {
     public static NotificationManager Instance;
-    public GameObject notificationPanel;
+    public GameObject notificationpanel;
     public NotificationUI notificationUI;
+    public NotificationSettings settings;
 
     public Transform topLeft;
     public Transform topCenter;
@@ -18,9 +19,9 @@ namespace NotificationFramework
     public GameObject historyItemPrefab;
     public Transform content;
     private List<NotificationData> notificationHistory = new List<NotificationData>();
-    private Queue<NotificationData> notificationQueue = new Queue<NotificationData>();
-    private int maxQueueSize = 5;
+    private List<NotificationData> notificationQueue = new List<NotificationData>();
     private bool isShowing = false;
+    private int maxQueueSize = 5;
     private void Awake()
     {
       Instance = this;
@@ -28,7 +29,8 @@ namespace NotificationFramework
     }
     private void Start()
     {
-      notificationPanel.SetActive(false);
+      notificationpanel = Instantiate(notificationpanel);
+      notificationUI = notificationpanel.GetComponent<NotificationUI>();
     }
     public void ShowNotification(NotificationData data)
     {
@@ -37,7 +39,11 @@ namespace NotificationFramework
         Debug.Log("Queue is Full");
         return;
       }
-      notificationQueue.Enqueue(data);
+      notificationQueue.Add(data);
+      if (settings.queueMode == Queuemode.Priority)
+      {
+        notificationQueue.Sort((a, b) => b.priority.CompareTo(a.priority));
+      }
       if (!isShowing)
       {
         ShowNextNotification();
@@ -54,13 +60,13 @@ namespace NotificationFramework
       if (notificationQueue.Count == 0)
       {
         isShowing = false;
-        notificationPanel.SetActive(false);
         return;
       }
       isShowing = true;
-      NotificationData data = notificationQueue.Dequeue();
+      NotificationData data = notificationQueue[0];
+      notificationQueue.RemoveAt(0);
       SetNotificationPosition(data.position);
-      notificationPanel.SetActive(true);
+      notificationpanel.SetActive(true);
       notificationUI.Setup(data);
       if (data.type != NotificationType.Loading && data.type != NotificationType.Progress)
       {
@@ -91,7 +97,7 @@ namespace NotificationFramework
     IEnumerator HideAfterAnimation()
     {
       yield return new WaitForSeconds(0.5f);
-      notificationPanel.SetActive(false);
+      notificationpanel.SetActive(false);
       isShowing = false;
       ShowNextNotification();
     }
@@ -109,28 +115,28 @@ namespace NotificationFramework
       switch (position)
       {
         case NotificationPosition.TopLeft:
-          notificationPanel.transform.SetParent(topLeft, false);
+          notificationpanel.transform.SetParent(topLeft, false);
           // notificationPanel = Instantiate(notificationPanel, topLeft);
           break;
 
         case NotificationPosition.TopCenter:
-          notificationPanel.transform.SetParent(topCenter, false);
+          notificationpanel.transform.SetParent(topCenter, false);
           break;
 
         case NotificationPosition.TopRight:
-          notificationPanel.transform.SetParent(topRight, false);
+          notificationpanel.transform.SetParent(topRight, false);
           break;
 
         case NotificationPosition.BottomLeft:
-          notificationPanel.transform.SetParent(bottomLeft, false);
+          notificationpanel.transform.SetParent(bottomLeft, false);
           break;
 
         case NotificationPosition.BottomCenter:
-          notificationPanel.transform.SetParent(bottomCenter, false);
+          notificationpanel.transform.SetParent(bottomCenter, false);
           break;
 
         case NotificationPosition.BottomRight:
-          notificationPanel.transform.SetParent(bottomRight, false);
+          notificationpanel.transform.SetParent(bottomRight, false);
           break;
       }
     }

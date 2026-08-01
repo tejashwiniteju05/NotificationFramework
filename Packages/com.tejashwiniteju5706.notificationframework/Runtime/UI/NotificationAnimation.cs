@@ -6,13 +6,12 @@ namespace NotificationFramework
   {
 
     public CanvasGroup canvasGroup;
-    public GameObject NotificationPanel;
     public NotificationSettings settings;
     RectTransform panelRect;
     Vector2 panelPosition;
     void Start()
     {
-      panelRect = NotificationPanel.GetComponent<RectTransform>();
+      panelRect = GetComponent<RectTransform>();
       panelPosition = panelRect.anchoredPosition;
     }
     //fade animation...
@@ -59,22 +58,22 @@ namespace NotificationFramework
     //scale animation...
     IEnumerator ScaleIn()
     {
-      NotificationPanel.transform.localScale = Vector3.zero;
-      while (NotificationPanel.transform.localScale.x < 1)
+      transform.localScale = Vector3.zero;
+      while (transform.localScale.x < 1)
       {
-        NotificationPanel.transform.localScale += new Vector3(0.05f, 0.05f, 0);
+        transform.localScale += new Vector3(0.05f, 0.05f, 0);
         yield return new WaitForSeconds(0.02f);
       }
-      NotificationPanel.transform.localScale = Vector3.one;
+      transform.localScale = Vector3.one;
     }
     IEnumerator ScaleOut()
     {
-      while (NotificationPanel.transform.localScale.x > 0)
+      while (transform.localScale.x > 0)
       {
-        NotificationPanel.transform.localScale -= new Vector3(0.05f, 0.05f, 0);
+        transform.localScale -= new Vector3(0.05f, 0.05f, 0);
         yield return new WaitForSeconds(0.02f);
       }
-      NotificationPanel.transform.localScale = Vector3.zero;
+      transform.localScale = Vector3.zero;
     }
     public void PlayShowAnimation()
     {

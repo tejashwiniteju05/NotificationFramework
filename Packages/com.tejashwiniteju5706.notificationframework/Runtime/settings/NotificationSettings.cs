@@ -33,6 +33,8 @@ namespace NotificationFramework
 
     //animations..
     public AnimationStyle animationStyle;
+    //Queue...
+    public Queuemode queueMode = Queuemode.FIFO;
   }
 }
 
