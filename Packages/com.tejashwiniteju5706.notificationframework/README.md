@@ -133,6 +133,7 @@ Notification Framework
 |   |   |- ScriptableObject
 |   |   L Sprites
 |   |
+|   |-Documentation
 |   |- Data
 |   |- Manager
 |   |- Settings
